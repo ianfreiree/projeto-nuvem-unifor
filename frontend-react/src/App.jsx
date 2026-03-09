@@ -31,54 +31,47 @@ function App() {
   }
 
   const listarProdutos = async () => {
-  try {
-    
-    const response = await fetch(`${API_URL}/produtos`, {
-      headers: {
-        'Authorization': localStorage.getItem('token')
-      }
-    });
-
-  
-    const data = await response.json();
-    setProdutos(data);
-  } catch (error) {
-    console.error("Erro ao carregar produtos:", error);
-  }
-};
+    try {
+      const response = await fetch(`${API_URL}/produtos`, {
+        headers: {
+          'Authorization': localStorage.getItem('token')
+        }
+      });
+      const data = await response.json();
+      setProdutos(data);
+    } catch (error) {
+      console.error("Erro ao listar:", error);
+    }
+  };
 
   const salvarProduto = async (e) => {
-    e.preventDefault()
-    const token = localStorage.getItem('token')
-    const metodo = form.id ? 'PUT' : 'POST'
-    const url = form.id ? `${API_URL}/${form.id}` : API_URL
-
+    e.preventDefault();
     try {
-      const res = await fetch(url, {
-        method: metodo,
-        headers: { 
-          'Content-Type': 'application/json', 
-          'Authorization': token 
+      const response = await fetch(`${API_URL}/produtos`, {
+        method: form.id ? 'PUT' : 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('token')
         },
-        body: JSON.stringify({ ...form, preco: Number(form.preco) })
-      })
+        body: JSON.stringify(form)
+      });
 
-      if (res.ok) {
-        alert(form.id ? 'Produto atualizado! 🔄' : 'Produto cadastrado! ✅')
-        setForm({ id: '', nome: '', preco: '', categoria: '' }) 
-        listarProdutos()
+      if (response.ok) {
+        alert("Sucesso na Nuvem! 🔥");
+        setForm({ id: '', nome: '', preco: '', categoria: '' });
+        listarProdutos();
       } else {
-        alert("Erro na operação. Verifique o login.")
+        alert("Erro na operação. Verifique o login.");
       }
-    } catch (err) {
-      alert("Erro de conexão com o servidor Docker.")
+    } catch (error) {
+      console.error("Erro ao salvar:", error);
     }
-  }
+  };
 
   const excluirProduto = async (id) => {
     if (!confirm('Deseja excluir?')) return
     const token = localStorage.getItem('token')
-    await fetch(`${API_URL}/${id}`, {
+    await fetch(`${API_URL}/produtos/${id}`, {
       method: 'DELETE',
       headers: { 'Authorization': token }
     })
@@ -101,14 +94,14 @@ function App() {
   return (
     <div className="container">
       <header>
-  <h1>🚀 Catálogo Inteligente </h1>
-  <button 
-    onClick={() => { localStorage.removeItem('token'); setIsLogged(false) }} 
-    className="btn-sair"
-  >
-    Sair
-  </button>
-</header>
+        <h1>🚀 Catálogo Inteligente </h1>
+        <button 
+          onClick={() => { localStorage.removeItem('token'); setIsLogged(false) }} 
+          className="btn-sair"
+        >
+          Sair
+        </button>
+      </header>
       
       <section className="cadastro">
         <h2>{form.id ? 'Editar Produto' : 'Cadastrar Novo Produto'}</h2>
