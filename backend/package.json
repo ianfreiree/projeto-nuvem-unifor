@@ -24,6 +24,8 @@
     "express": "^5.2.1",
     "firebase-admin": "^13.7.0",
     "mongodb": "3.7",
-    "mongoose": "^9.2.4"
+    "mongoose": "^9.2.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   }
 }

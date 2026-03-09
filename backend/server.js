@@ -5,9 +5,39 @@ require('dotenv').config();
 
 const serviceAccount = require("./firebase-key.json");
 
-
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
+
+const swaggerOptions = {
+  swaggerDefinition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'API Catálogo Inteligente - UNIFOR',
+      version: '1.0.0',
+      description: 'Documentação da API para gerenciamento de produtos em nuvem',
+      contact: {
+        name: 'Ian'
+      },
+      servers: [{ url: 'https://projeto-nuvem-unifor.onrender.com' }]
+    },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        }
+      }
+    }
+  },
+  apis: ['./server.js'],
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(cors());
 app.use(express.json());
@@ -18,7 +48,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
@@ -28,7 +57,6 @@ console.log('Tentando conectar ao Firebase Firestore... 🔥');
 db.collection('teste').add({ status: 'online', data: new Date() })
     .then(() => console.log('Conectado ao Firebase com sucesso! ✅'))
     .catch(err => console.error('Erro no Firebase:', err));
-
 
 const verificarAuth = async (req, res, next) => {
   const token = req.headers.authorization;
@@ -43,11 +71,30 @@ const verificarAuth = async (req, res, next) => {
   }
 };
 
-
+/**
+ * @swagger
+ * /:
+ * get:
+ * summary: Rota raiz para verificar status do servidor
+ * responses:
+ * 200:
+ * description: Servidor rodando com sucesso
+ */
 app.get('/', (req, res) => {
   res.send('🚀 Backend do Catálogo Inteligente rodando via Docker!');
 });
 
+/**
+ * @swagger
+ * /produtos:
+ * get:
+ * summary: Retorna a lista de todos os produtos (CRUD: Read)
+ * responses:
+ * 200:
+ * description: Lista de produtos recuperada com sucesso
+ * 500:
+ * description: Erro interno do servidor
+ */
 app.get('/produtos', async (req, res) => {
   try {
     const snapshot = await db.collection('produtos').get();
@@ -59,7 +106,34 @@ app.get('/produtos', async (req, res) => {
   }
 });
 
-
+/**
+ * @swagger
+ * /produtos:
+ * post:
+ * summary: Cadastra um novo produto (CRUD: Create)
+ * security:
+ * - bearerAuth: []
+ * requestBody:
+ * required: true
+ * content:
+ * application/json:
+ * schema:
+ * type: object
+ * properties:
+ * nome:
+ * type: string
+ * preco:
+ * type: number
+ * categoria:
+ * type: string
+ * responses:
+ * 201:
+ * description: Produto criado com sucesso
+ * 400:
+ * description: Dados inválidos fornecidos
+ * 401:
+ * description: Não autorizado
+ */
 app.post('/produtos', verificarAuth, async (req, res) => { 
   try {
     const { nome, preco, categoria } = req.body;
@@ -81,6 +155,41 @@ app.post('/produtos', verificarAuth, async (req, res) => {
   } 
 });
 
+/**
+ * @swagger
+ * /produtos/{id}:
+ * put:
+ * summary: Atualiza um produto existente (CRUD: Update)
+ * security:
+ * - bearerAuth: []
+ * parameters:
+ * - in: path
+ * name: id
+ * required: true
+ * schema:
+ * type: string
+ * description: ID do produto
+ * requestBody:
+ * required: true
+ * content:
+ * application/json:
+ * schema:
+ * type: object
+ * properties:
+ * nome:
+ * type: string
+ * preco:
+ * type: number
+ * categoria:
+ * type: string
+ * responses:
+ * 200:
+ * description: Produto atualizado com sucesso
+ * 400:
+ * description: Dados inválidos
+ * 401:
+ * description: Não autorizado
+ */
 app.put('/produtos/:id', verificarAuth, async (req, res) => {
   try {
     const { id } = req.params;
@@ -101,6 +210,28 @@ app.put('/produtos/:id', verificarAuth, async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /produtos/{id}:
+ * delete:
+ * summary: Remove um produto do sistema (CRUD: Delete)
+ * security:
+ * - bearerAuth: []
+ * parameters:
+ * - in: path
+ * name: id
+ * required: true
+ * schema:
+ * type: string
+ * description: ID do produto
+ * responses:
+ * 200:
+ * description: Produto removido com sucesso
+ * 401:
+ * description: Não autorizado
+ * 500:
+ * description: Erro ao deletar
+ */
 app.delete('/produtos/:id', verificarAuth, async (req, res) => { 
   try {
     const { id } = req.params;
@@ -112,7 +243,6 @@ app.delete('/produtos/:id', verificarAuth, async (req, res) => {
     res.status(500).json({ error: 'Erro ao deletar o produto' });
   } 
 });
-
 
 app.listen(PORT, () => {
   console.log(`🚀 SERVIDOR ATIVO NA PORTA ${PORT}`);
