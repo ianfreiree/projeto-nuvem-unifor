@@ -60,7 +60,7 @@ function App() {
     };
 
     
-    console.log("Tentando enviar os dados:", dadosParaEnviar);
+  
 
     try {
       const url = form.id ? `${API_URL}/produtos/${form.id}` : `${API_URL}/produtos`;
