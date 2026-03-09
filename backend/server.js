@@ -244,6 +244,8 @@ app.delete('/produtos/:id', verificarAuth, async (req, res) => {
   } 
 });
 
+module.exports = app;
+
 app.listen(PORT, () => {
   console.log(`🚀 SERVIDOR ATIVO NA PORTA ${PORT}`);
 });
