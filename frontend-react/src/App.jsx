@@ -7,7 +7,7 @@ function App() {
   const [produtos, setProdutos] = useState([])
   const [form, setForm] = useState({ id: '', nome: '', preco: '', categoria: '' })
   
-  const API_URL = 'http://localhost:3000/produtos'
+  const API_URL = 'https://projeto-nuvem-unifor.onrender.com'
 
   useEffect(() => {
     const token = localStorage.getItem('token')
