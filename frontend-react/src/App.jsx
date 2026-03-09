@@ -31,14 +31,21 @@ function App() {
   }
 
   const listarProdutos = async () => {
-    try {
-      const res = await fetch(API_URL)
-      const data = await res.json()
-      setProdutos(data)
-    } catch (err) {
-      console.error("Erro ao carregar produtos:", err)
-    }
+  try {
+    
+    const response = await fetch(`${API_URL}/produtos`, {
+      headers: {
+        'Authorization': localStorage.getItem('token')
+      }
+    });
+
+  
+    const data = await response.json();
+    setProdutos(data);
+  } catch (error) {
+    console.error("Erro ao carregar produtos:", error);
   }
+};
 
   const salvarProduto = async (e) => {
     e.preventDefault()
