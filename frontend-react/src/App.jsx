@@ -37,10 +37,15 @@ function App() {
           'Authorization': localStorage.getItem('token')
         }
       });
+      
+      if (!response.ok) throw new Error("Erro no servidor");
+
       const data = await response.json();
-      setProdutos(data);
+      // Garante que 'produtos' sempre receba uma lista, mesmo se o servidor falhar
+      setProdutos(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Erro ao listar:", error);
+      setProdutos([]); // Reseta para lista vazia em caso de erro
     }
   };
 
@@ -119,8 +124,10 @@ function App() {
       <section className="lista">
         <h2>Produtos no Estoque</h2>
         <div className="produtos-grid">
-          {produtos.length === 0 && <p>Nenhum produto encontrado...</p>}
-          {produtos.map(p => (
+          {/* Validação de segurança para evitar tela branca */}
+          {(!Array.isArray(produtos) || produtos.length === 0) && <p>Nenhum produto encontrado...</p>}
+          
+          {Array.isArray(produtos) && produtos.map(p => (
             <div key={p.id} className="produto-card">
               <h3>{p.nome}</h3>
               <p>R$ {p.preco}</p>
