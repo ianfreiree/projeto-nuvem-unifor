@@ -52,16 +52,24 @@ function App() {
   const salvarProduto = async (e) => {
     e.preventDefault();
     try {
-      
       const url = form.id ? `${API_URL}/produtos/${form.id}` : `${API_URL}/produtos`;
       
+      // Criamos uma cópia dos dados para não sujar o formulário da tela
+      const dadosParaEnviar = { ...form };
+      
+      // Se não tem ID, removemos o campo do objeto antes de enviar (evita o erro 400)
+      if (!form.id) {
+        delete dadosParaEnviar.id;
+      }
+
       const response = await fetch(url, {
         method: form.id ? 'PUT' : 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': localStorage.getItem('token')
         },
-        body: JSON.stringify(form)
+        // Enviamos os dados limpos
+        body: JSON.stringify(dadosParaEnviar)
       });
 
       if (response.ok) {
@@ -69,8 +77,9 @@ function App() {
         setForm({ id: '', nome: '', preco: '', categoria: '' });
         listarProdutos();
       } else {
-        
-        alert("Erro na operação. Verifique o login ou a rota.");
+        const erroTxt = await response.text();
+        console.error("Erro do servidor:", erroTxt);
+        alert("Erro na operação. Verifique os dados.");
       }
     } catch (error) {
       console.error("Erro ao salvar:", error);
