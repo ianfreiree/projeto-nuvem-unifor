@@ -51,16 +51,20 @@ function App() {
 
  const salvarProduto = async (e) => {
     e.preventDefault();
+    
+    
+    const dadosParaEnviar = {
+      nome: String(form.nome).trim(),
+      preco: parseFloat(form.preco),
+      categoria: String(form.categoria)
+    };
+
+    
+    console.log("Tentando enviar os dados:", dadosParaEnviar);
+
     try {
       const url = form.id ? `${API_URL}/produtos/${form.id}` : `${API_URL}/produtos`;
       
-      
-      const dadosParaEnviar = {
-        nome: form.nome.trim(),       
-        preco: Number(form.preco),    
-        categoria: form.categoria
-      };
-
       const response = await fetch(url, {
         method: form.id ? 'PUT' : 'POST',
         headers: {
@@ -75,11 +79,12 @@ function App() {
         setForm({ id: '', nome: '', preco: '', categoria: '' });
         listarProdutos();
       } else {
-        const erroJson = await response.json();
-        alert("Erro: " + (erroJson.error || "Verifique os dados."));
+        const erroServidor = await response.json();
+        console.error("O servidor rejeitou:", erroServidor);
+        alert(`Erro: ${erroServidor.error || "Verifique os dados"}`);
       }
     } catch (error) {
-      console.error("Erro ao salvar:", error);
+      console.error("Erro na requisição:", error);
     }
   };
 
