@@ -41,18 +41,21 @@ function App() {
       if (!response.ok) throw new Error("Erro no servidor");
 
       const data = await response.json();
-      // Garante que 'produtos' sempre receba uma lista, mesmo se o servidor falhar
+      
       setProdutos(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Erro ao listar:", error);
-      setProdutos([]); // Reseta para lista vazia em caso de erro
+      setProdutos([]); 
     }
   };
 
   const salvarProduto = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_URL}/produtos`, {
+      
+      const url = form.id ? `${API_URL}/produtos/${form.id}` : `${API_URL}/produtos`;
+      
+      const response = await fetch(url, {
         method: form.id ? 'PUT' : 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +69,8 @@ function App() {
         setForm({ id: '', nome: '', preco: '', categoria: '' });
         listarProdutos();
       } else {
-        alert("Erro na operação. Verifique o login.");
+        
+        alert("Erro na operação. Verifique o login ou a rota.");
       }
     } catch (error) {
       console.error("Erro ao salvar:", error);
@@ -124,7 +128,7 @@ function App() {
       <section className="lista">
         <h2>Produtos no Estoque</h2>
         <div className="produtos-grid">
-          {/* Validação de segurança para evitar tela branca */}
+          
           {(!Array.isArray(produtos) || produtos.length === 0) && <p>Nenhum produto encontrado...</p>}
           
           {Array.isArray(produtos) && produtos.map(p => (
