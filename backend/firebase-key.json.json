@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "catalogo-inteligente-unifor",
+  "private_key_id": "96150c5b453361e136576d0915666b30a20b418c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC8upWp7SUZsT2g\n1ynx6tF7zaZ4WTAl0WCK05ll+kl85ZxXOXODoPhwbUHleqrzivClUlhxkWPyKOLt\njc26aJmlQQ9TkAEp6KE3x18pfw6fU/gRg5GtfkfYc87y0Nh2ll0+DZvUkWhPJAf1\nuTsM6aRpPdgbcXmh9VpWdbHmkQCtCGjuKJeic2ktyHjVuPybSBBqypo6zPKpfLx2\nN2mEJpogZq//hGokN1zx5avkK6bexg5oesHw5fh3iepk/ZbGusDHSIsrqbW4stIw\nk6n+i9I4w6w03vA1xMge4UiTZohdMYoiIGF14AHHnls/uSH3g+54umRi6qezqKY0\n7U1Scbz3AgMBAAECggEASW0IVGvEnunTsdN0aL/0j4ezqCf+8P+0YV6w1DmbxMFq\nYY8jD4edkNQZKqhegVFBjfhrG4g2y9y3aTfd3hPbDy2wQlEI+t6cdqCVOAZMUJWx\nMlMvZsH2PtLTpam2RfD7Ruyxf3KxE/VPOX0+6aevBRkADrFH4sibxH6W377zdd3g\nK+J0ICIuQRUw/mcqZ/Es4OreI7bDjUeD+G7xLBA+ch0N/5IfwRFMCmFpWcL9WG+d\nVnahM901qdpRiJQj+jGvFR4Rp68uf8iy38zo4b16nVk4FDFE74eNYfdUm+yWHkKF\nNyfH6vzBKpuo45vP9ajc800AN3uQp8Y6HyEyW8jNlQKBgQDhCbUJSKGM9KpTtuE/\nv1uhAsTpqO7z95u9GsQz06y1AyDZz+AzPSRi0KznVvv+WN+ZQEG0sdvXX3JqJQca\nD4iSVfpRuTGDF5Y8xsKJWDoQIEMYXbHux3tQJzjvT7IsBcRzmFowJ5HLeZa/Z4NH\n35cjAoLj/o0E7HBywckAOws44wKBgQDWsf+FeCxZQtjloBQdy87opAzT5oMVT1lF\nhMbAz7O3ZdF5gj74iTfDZhuoruXSU3+yzuVBK1EEkHLpwiHdg8xyQZAZtmnHODmH\nKAFskTDwL94SlDBptyI/Wbz5vAOoZH33Qt2FMGYoDdrBE3INYlRkupN0W+oC8yqq\n9vixD9ar3QKBgHW561CBA6rG8Dg9SxdbV2cjGLqYWvGcjofecdgfG5HSoiPwgPyt\nNtTPEDUyJ0BHZCo7GGScS0Mftq5a0p1KlQrhGcQZGxLWiw0eefT6B94Z0p/znDsr\ndpJXAo0HZ1Fqbvx+LmhUuwv0fu2BDIfUK6/wB2OY7lMuEiGmyS1qthM7AoGAI4zt\n5sfzcARlrgBH1Hc/F76ycRQmeIzfF2fZEWxTMfcmLJyomLcACNcLlW8Al0dESfOA\ner4VeFAC9zoyKV/9pp28osVV1qs0u3Cga73PALasax8mtRqiDSNq6196q5OYWC02\nSSuufstsgbQamqTBnLxYVlgx87MYSZ8Dpy4cOfECgYAipCqQibbDV3HdlPnjrFSd\nFSj1X0cgVIgkmNCuZ/FYF5ehLH6TnbsluIBCBdEmYvzLMCpKLH5totjkF7L8O4F0\nM1dUdnavw4lgK1VTto+CxmTNWdm+Z+HVDYh5SPpKweK2hUwd8Ypc6Ry74L7cmJwm\n8tWcNbWGrSGiRo/0WkcyPQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@catalogo-inteligente-unifor.iam.gserviceaccount.com",
+  "client_id": "103860598008226714651",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40catalogo-inteligente-unifor.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

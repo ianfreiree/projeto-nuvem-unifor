@@ -1,0 +1,107 @@
+/* 1. Configurações Globais (Reset) */
+:root {
+  background-color: #f4f7f6;
+  color: #333;
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center; /* Centraliza o container na horizontal */
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+/* 2. O Cartão Principal */
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 850px; /* Largura próxima à sua versão original */
+}
+
+h1 { 
+  color: #2c3e50; 
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 3. Formulário de Cadastro */
+.cadastro form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  flex: 1;
+  background-color: white !important;
+  color: black !important;
+}
+
+/* 4. Botões (Base e Cores Específicas) */
+button {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  color: white;
+}
+
+/* Cor Padrão (Azul) */
+.btn-principal {
+  background-color: #3498db;
+}
+.btn-principal:hover { background-color: #2980b9; }
+
+/* Botão Sair (Vermelho) */
+.btn-sair {
+  background-color: #ff5e62 !important;
+  float: right; /* Joga o botão para a direita se estiver no header */
+}
+.btn-sair:hover {
+  background-color: #e04a4d !important;
+}
+
+/* Botão Editar (Laranja) */
+.btn-editar {
+  background-color: #ffa500 !important; 
+}
+.btn-editar:hover {
+  background-color: #cc8400 !important;
+}
+
+/* Botão Excluir (Vermelho Escuro) */
+.btn-excluir {
+  background-color: #e74c3c !important;
+}
+.btn-excluir:hover {
+  background-color: #c0392b !important;
+}
+
+/* 5. Cards da Lista */
+.produto-card {
+  background: #fff;
+  border-left: 5px solid #3498db;
+  padding: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.acoes {
+  display: flex;
+  gap: 8px;
+}
