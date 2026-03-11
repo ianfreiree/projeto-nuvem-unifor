@@ -7,6 +7,8 @@ Este projeto consiste em um sistema de gerenciamento de estoque **Full-Stack** e
 # Links de Acesso (Produção)
 * Front-end (Vercel): [https://projeto-nuvem-unifor.vercel.app](https://projeto-nuvem-unifor.vercel.app)
 * API/Back-end (Render): [https://projeto-nuvem-unifor.onrender.com](https://projeto-nuvem-unifor.onrender.com)
+* Documentação da API (Swagger/OpenAPI): [https://projeto-nuvem-unifor.onrender.com/api-docs](https://projeto-nuvem-unifor.onrender.com/api-docs)
+
 
 ---
 
@@ -38,6 +40,15 @@ O sistema foi desenhado seguindo o modelo de micro-serviços desacoplados e **St
 
 ---
 
+# Credenciais para Avaliação
+Para testar as rotas protegidas (CRUD), utilize o login abaixo no Front-end:
+
+*Usuário:* professor@unifor.br
+
+*Senha:* unifor123
+
+----
+
 # Como Executar o Projeto (Desenvolvimento)
 
 # 1. Iniciar o Back-end (Docker)
@@ -61,3 +72,5 @@ docker run -p 3000:3000 catalogo-backend
 # Equipe e Papéis (UNIFOR - Grupo 5)
 *Ian Aureliano Freire:* Arquiteto de Software, Desenvolvedor Full-stack.
 *Henri Aureliano Freire:* Engenheiro DevOps, Responsável por Qualidade e Testes.
+
+**Observabilidade e Logs:** Implementamos um middleware de log customizado no Express que registra cada requisição (Método, URL e Timestamp) no console do servidor. Isso permitiu o monitoramento em tempo real da saúde da aplicação através do dashboard do Render.
