@@ -8,7 +8,8 @@ Este projeto consiste em um sistema de gerenciamento de estoque **Full-Stack** e
 * Front-end (Vercel): [https://projeto-nuvem-unifor.vercel.app](https://projeto-nuvem-unifor.vercel.app)
 * API/Back-end (Render): [https://projeto-nuvem-unifor.onrender.com](https://projeto-nuvem-unifor.onrender.com)
 * Documentação da API (Swagger/OpenAPI): [https://projeto-nuvem-unifor.onrender.com/api-docs](https://projeto-nuvem-unifor.onrender.com/api-docs)
-*Vídeo do nosso projeto (Youtube): (https://www.youtube.com/watch?v=ZwVzveC7FhE)
+* Vídeo do nosso projeto (Youtube): (https://www.youtube.com/watch?v=ZwVzveC7FhE)
+
 
 
 ---
